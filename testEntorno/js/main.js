@@ -1,11 +1,36 @@
 
 
 /*Ejercicio 1: Desarrollo de los cambios de estilos. */
+document.querySelector("#botonWhite").onclick = botonTest;
+function botonTest(){
+    var linkeo= document.querySelector("#estilos")
+    if(linkeo.hasAttribute("href")){
+        linkeo.setAttribute("href","css/whitestyle.css")
+    }
+}
 
-
-
+document.querySelector("#botonBlack").addEventListener('click', () => {
+let linkada = document.querySelector("#estilos");
+    if(linkada.hasAttribute("href")){
+    linkada.setAttribute("href","css/blackstyle.css")
+}});
 /* Ejercicio 2: Generar una funcion que haga mostrar la contraseña.*/
 
+var cajaContrasena=document.querySelector(".form-check-input");
+var textoContrasena=document.querySelector("#inputPassword")
+console.log(cajaContrasena);
+console.log(textoContrasena);
+
+
+cajaContrasena.addEventListener('click',mostrarContrasena);
+
+function mostrarContrasena(){
+    if (textoContrasena.type === "password") {
+        textoContrasena.type = "text";
+      } else {
+        textoContrasena.type = "password";
+      }
+}
 
 
 
@@ -30,36 +55,50 @@ function checkPassword(){
 }
 
 /* Ejercicio 3: Comprobar contraseña vacía. */
-function analizarContrasenia(){
-    
+
+function analizarContrasenia() {
+
     var password = document.getElementById('inputPassword');
-   
-    // if( ){
-       
-       
-        
-    // }
-    // else{
-        
-    //     quitarMensajePassVacia();
-    //     guardarPasswordsIngresadas(password.value);
-    //     analizarSecuencia();
-    // }
-    
+
+    var textada = document.querySelector("#mensajePasswordEmpty")
+
+    if(password.value === null || password.value === ''){
+
+        textada.textContent= "No se ha ingresado contraseña. Por favor ingrese una contraseña";
+
+    }
+
+    else{
+
+       // quitarMensajePassVacia();
+
+       // guardarPasswordsIngresadas(password.value);
+
+        analizarSecuencia();
+
+    }
+
     return false;
 }
- 
- function quitarMensajePassVacia(){
- 
-     document.getElementById('mensajePasswordEmpty').innerHTML= (" ");
-    
- }
 
 function reset(){ 
     /*Ejercicio 4: Reiniciar campos. */
 }
 
-
+    document.getElementById('seguridadPassword').innerHTML= (" ");
+    document.getElementById('cantTotalCaracteres').innerHTML= (" ");
+    document.getElementById('cantNum').innerHTML= (" ");
+    document.getElementById('cantLetras').innerHTML= (" ");
+    document.getElementById('cantLetrasMayus').innerHTML= (" ");
+    document.getElementById('cantEspeciales').innerHTML= (" ");
+    document.getElementById('cantLetrasMinus').innerHTML= (" ");
+    document.getElementById('cantIguales').innerHTML= (" ");
+    document.getElementById('porcentajeNums').innerHTML= (" ");
+    document.getElementById('porcentajeLetras').innerHTML= (" ");
+    document.getElementById('porcentajeEspeciales').innerHTML= (" ");
+    document.querySelector('#porcentajeNums').style.width= ("0%");
+    document.querySelector('#porcentajeLetras').style.width= ("0%");
+    document.querySelector('#porcentajeEspeciales').style.width= ("0%");
 
 
 function analizarSecuencia(){
@@ -74,11 +113,15 @@ function armarEstructuraCadena(){
      var caracter,secuencia=[];
      var i=0; 
     /* Ejercicio 5. */
-     return secuencia;
-     
+
+    for (i=0; i<=cadenaIngresada.length; i++){
+        caracter = cadenaIngresada.charAt(i);
+        secuencia.push(caracter);
+    }
+    
+    console.log(secuencia);
  }
 
- 
 
 /* Funcion que suma cada caracter. */
 function calcularCantidadesPassword(secuenciaArmada){
@@ -171,6 +214,16 @@ function calcularCantidadesPassword(secuenciaArmada){
 
 function sonIguales(elem1,elem2){
     /*Ejercicio 7: Comprobar que dos elementos sean iguales */
+
+    if (elem1 == elem2) {
+
+        return true;
+
+    } else {
+
+        return false;
+
+    }
 }
 
 function sonConsecutivos(elem1,elem2){
@@ -262,8 +315,54 @@ function mostrarInfoPassword(infoPassword){
 
 function mostrarCantidadesAnalisis(infoPassword){
 
+        var caracterada = document.querySelector("#cantTotalCaracteres")
+    
+        var numerada= document.querySelector("#cantNum")
+    
+        var especialada = document.querySelector("#cantEspeciales")
+    
+        var letrada = document.querySelector("#cantLetras")
+    
+        var miniletrada = document.querySelector("#cantLetrasMinus")
+    
+        var mayuscada = document.querySelector("#cantLetrasMayus")
+    
+        var igualada = document.querySelector("#cantIguales")
+    
+        var consentada = document.querySelector("#cantConsecutivos")
+    
+        var distintada = document.querySelector("#cantDistintos")
+    
+        var tipada = document.querySelector("#secTipoNums")
+    
+        var secletrada = document.querySelector("#secTipoLetras")
+    
+        var especialada = document.querySelector("#secTipoEspeciales")
+
+
+        caracterada.textContent = infoPassword.caracterada;
+        numerada.textContent = infoPassword.numerada;
+        especialada.textContent = infoPassword.especialada;
+        letrada.textContent=infoPassword.letrada;
+        miniletrada.textContent = infoPassword.miniletrada;
+        mayuscada.textContent = infoPassword.igualada;
+        igualada.textContent = infoPassword.igualada;
+        consentada.textContent = infoPassword.consentada;
+        distintada.textContent = infoPassword.distintada; 
+        tipada.textContent = infoPassword.tipada;
+        secletrada.textContent = infoPassword.secletrada;
+        especialada.textContent = infoPassword.especialada;
+
  /*Ejercicio 6: Mostrar cantidades. */
 }
+
+
+
+
+
+
+
+
 
 function analizarUnTipoSecuencia(cantNum,cantLetras,cantEspeciales,cantCaracteres){
 
@@ -350,7 +449,7 @@ function calculoSeguridadPassword(infoPassword){
 
 function determinarSeguridadPassword(promedioPassword){
 
-    var promedio= dejarDosDigitosDecimales(promedioPassword);
+    var promedio= calculoSeguridadPassword(promedioPassword);
      /*Ejercicio 11. Mostrar seguridad. */
 
     return escalaItensidad;
